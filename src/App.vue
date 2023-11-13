@@ -17,21 +17,25 @@ function capturarSegundoNumero(event) {
 }
 
 function realizarOperacao() {
+  if (isNaN(estado.numero1) || isNaN(estado.numero2)) {
+    return "Preencha ambos os campos";
+  }
+
   const filtro = estado.filtro;
 
   switch (filtro) {
     case "soma":
       estado.resultado = estado.numero1 + estado.numero2;
-      return estado.resultado;
+      return "Resultado: " + estado.resultado;
     case "subtracao":
       estado.resultado = estado.numero1 - estado.numero2;
-      return estado.resultado;
+      return "Resultado: " + estado.resultado;
     case "divisao":
       estado.resultado = estado.numero1 / estado.numero2;
-      return estado.resultado;
+      return "Resultado: " + estado.resultado;
     case "multiplicacao":
       estado.resultado = estado.numero1 * estado.numero2;
-      return estado.resultado;
+      return "Resultado: " + estado.resultado;
   }
 }
 </script>
@@ -58,7 +62,7 @@ function realizarOperacao() {
           id="first-number"
           required
           @keyup="capturarPrimeiroNumero"
-          placeholder="0"
+          placeholder="Insira o primeiro número"
         />
       </div>
       <div class="numero">
@@ -68,11 +72,11 @@ function realizarOperacao() {
           id="second-number"
           required
           @keyup="capturarSegundoNumero"
-          placeholder="0"
+          placeholder="Insira o segundo número"
         />
       </div>
       <div class="resultado">
-        <p>Resultado: {{ realizarOperacao() }}</p>
+        <p>{{ realizarOperacao() }}</p>
       </div>
     </main>
   </div>
